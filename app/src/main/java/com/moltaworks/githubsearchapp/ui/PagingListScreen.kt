@@ -41,6 +41,7 @@ import timber.log.Timber
 fun PagingListScreen(repos: Flow<PagingData<GitHubRepos>>, padding: PaddingValues?) {
 
     val lazyPagingItems = repos.collectAsLazyPagingItems()
+
     LazyColumn {
         items(
             items = lazyPagingItems,
