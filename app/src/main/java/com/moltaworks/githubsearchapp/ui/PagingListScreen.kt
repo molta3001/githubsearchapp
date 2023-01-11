@@ -120,11 +120,10 @@ fun PagingListScreen(repos: Flow<PagingData<GitHubRepos>>, padding: PaddingValue
 fun ProfileCardComposable(ghRepo: GitHubRepos) {
 
     Row(
-
         modifier = Modifier
             .padding(5.dp)
             .background(Color.Yellow)
-
+            .fillMaxWidth()
     ) {
 
         ghRepo.owner.let {
