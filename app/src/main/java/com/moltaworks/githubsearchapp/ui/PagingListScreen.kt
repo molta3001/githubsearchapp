@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
@@ -22,10 +24,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -36,6 +42,7 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.moltaworks.githubsearchapp.data.GitHubRepos
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
+
 
 @Composable
 fun PagingListScreen(repos: Flow<PagingData<GitHubRepos>>, padding: PaddingValues?) {
@@ -118,18 +125,40 @@ fun PagingListScreen(repos: Flow<PagingData<GitHubRepos>>, padding: PaddingValue
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun ProfileCardComposable(ghRepo: GitHubRepos) {
+    val horizontalGradientBrush = Brush.horizontalGradient(
+        colors = listOf(
+            Color(0xffFFF9C4),
+            Color(0xffFFEE58),
+            Color(0xffF57F17),
+        )
+    )
+
+
+    val verticalGradientBrush = Brush.verticalGradient(
+        colors = listOf(
+            Color(0xffD7CCC8),
+            Color(0xff8D6E63),
+            Color(0xff4E342E),
+        )
+    )
 
     Row(
         modifier = Modifier
             .padding(5.dp)
-            .background(Color.Yellow)
+            .background(
+                brush = verticalGradientBrush,
+                shape = RoundedCornerShape(35.dp),
+                alpha = 0.3F
+            )
+
+            .border(2.dp, color = Color.Black, shape = RoundedCornerShape(25.dp))
             .fillMaxWidth()
     ) {
 
         ghRepo.owner.let {
             Column(
                 modifier = Modifier
-                    .padding(2.dp),
+                    .padding(8.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -156,7 +185,10 @@ fun ProfileCardComposable(ghRepo: GitHubRepos) {
             }
         }
         ghRepo.let {
-            Column() {
+            Column(
+                modifier = Modifier
+                    .padding(8.dp)
+            ) {
                 Text(
                     modifier = Modifier
                         .padding(1.dp),
