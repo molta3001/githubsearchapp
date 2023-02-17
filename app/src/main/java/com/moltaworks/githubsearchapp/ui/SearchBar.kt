@@ -33,9 +33,10 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-
+import com.moltaworks.githubsearchapp.Constant.SEARCHFIELD_TAG
 
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
@@ -56,6 +57,7 @@ fun SearchBar(
 
             OutlinedTextField(
                 modifier = Modifier
+                    .testTag(SEARCHFIELD_TAG)
                     .fillMaxWidth()
                     .padding(vertical = 2.dp)
                     .onFocusChanged { focusState ->

@@ -3,6 +3,7 @@ package com.moltaworks.githubsearchapp.ui
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Scaffold
+import androidx.compose.material.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -37,5 +38,3 @@ fun HomeScreen() {
         },
     )
 }
-
-
